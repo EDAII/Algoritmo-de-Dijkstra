@@ -4,11 +4,13 @@
 <meta charset="utf-8">
 <title>Algoritmo de Dijkstra</title>
 <script src="dijkstra.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">	
 </head>
 <body>
-<img id="imgFundo" src="img.jpg"/>	
-<img src="selecionado.png"/>
+<img id="imgFundo" src="imgnum.jpg"/>	
+<div id="selecao">
+<img id="calc" src="selecionado.png"/>
 Origem:
 	<select id="origem">
       <option value="1">1</option>
@@ -30,7 +32,15 @@ Destino:
       <option value="6">6</option>
       <option value="7">7</option>
       <option value="8">8</option>
-    </select>
+  </select>
+  <div id="mincaminho">
+    
+  </div>
+  <div id="custo">
+
+  </div>
+</div>
+
 <script>
 			
 var _ = Infinity;
@@ -46,11 +56,17 @@ var matrizAdjacencia = [
 [ _, 11, _, 10, _, 9, _, _]			
 ];
 
-$("#imgFundo").click(function(){
+$("#calc").click(function(){
 	var origem = $("#origem option:selected").val();
 	var destino = $("#destino option:selected").val();
-	var dadosMenorCaminho = calculaMenorCaminho(matrizAdjacencia, 8, parseInt(origem));			
-	var caminho = retornaCaminho(dadosMenorCaminho, parseInt(destino));			
+	var dadosMenorCaminho = calculaMenorCaminho(matrizAdjacencia, 8, parseInt(origem-1));			
+  var caminho = retornaCaminho(dadosMenorCaminho, parseInt(destino-1));			
+  document.getElementById("mincaminho").innerHTML = "Menor Custo: " + dadosMenorCaminho.tamanhoCaminhos[parseInt(destino)-1];
+  arr = caminho.map(function(val){return ++val;});
+  arr.unshift(parseInt(origem));
+  document.getElementById("custo").innerHTML = "Caminho: " +arr.join(' -> ');
+  
+  
 	console.log(dadosMenorCaminho);			
 	console.log(caminho); //Aqui tem os enderecos do caminho
 });		

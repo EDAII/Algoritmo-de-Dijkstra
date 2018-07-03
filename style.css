@@ -1,0 +1,18 @@
+* {
+    font: 15px Helvetica, Arial, sans-serif;
+    background: #FFF;
+    padding: 10px;
+    text-align: center;
+    transition: 100ms ease-in background;
+}
+
+#selecao {
+    float: left;
+    color: blue;
+}
+
+#mincaminho, #custo {
+    font: 30px Helvetica, Arial, sans-serif;
+    color: blue;
+    margin-top: 15px 
+}
